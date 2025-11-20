@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lilocatiee •  Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Neue', cursive;
+            background: linear-gradient(135deg, #ffd6e7 0%, #ffc2dd 50%, #ffafcc 100%);
+            color: #5a3d5c;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #ff5c8d 0%, #ff97b7 100%);
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 5px solid #ff2d75;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hearts" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><path fill="%23ffffff" fill-opacity="0.1" d="M10,6 C8,2 4,1 2,3 0,5 0,9 2,11 4,13 8,15 10,17 12,15 16,13 18,11 20,9 20,5 18,3 16,1 12,2 10,6 Z"/></pattern></defs><rect fill="url(%23hearts)" width="100" height="100"/></svg>');
+            animation: floatHearts 20s linear infinite;
+        }
+
+        @keyframes floatHearts {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .profile-header {
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 0 20px rgba(255, 45, 117, 0.5);
+            margin: 0 auto 20px;
+            background: linear-gradient(45deg, #ffafcc, #ff5c8d);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            animation: bounce 3s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .username {
+            font-size: 2.5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 10px;
+        }
+
+        .status {
+            color: white;
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: bold;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-bottom: 3px solid #ff5c8d;
+            box-shadow: 0 5px 15px rgba(255, 92, 141, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-list {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav-link {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #ff5c8d, #ff97b7);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-size: 1.1rem;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 92, 141, 0.4);
+            background: white;
+            color: #ff5c8d;
+            border-color: #ff5c8d;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.15);
+            border: 2px solid #ffd1dc;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .content-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .content-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff5c8d, #ff97b7, #ff5c8d);
+        }
+
+        .section-title {
+            color: #ff5c8d;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+            font-weight: bold;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff5c8d, #ff97b7);
+            border-radius: 3px;
+        }
+
+        /* About Me */
+        .about-content {
+            line-height: 1.8;
+            color: #5a3d5c;
+            font-size: 1.1rem;
+        }
+
+        .about-highlight {
+            background: linear-gradient(45deg, #fff5f7, #ffeef4);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid #ff5c8d;
+            margin: 20px 0;
+        }
+
+        .about-highlight ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .about-highlight li {
+            padding: 8px 0;
+            position: relative;
+        }
+
+        .about-highlight li::before {
+            content: "•";
+            color: #ff5c8d;
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            border-radius: 15px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 92, 141, 0.4);
+        }
+
+        /* Games */
+       .games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.game-card {
+    background: linear-gradient(135deg, #fff5f7, #ffeef4);
+    border-radius: 20px;
+    padding: 0;
+    border: 2px solid #ffd1dc;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(255, 92, 141, 0.1);
+}
+
+.game-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(255, 92, 141, 0.2);
+}
+
+.game-image {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    position: relative;
+}
+
+.game-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.game-card:hover .game-image img {
+    transform: scale(1.1);
+}
+
+.game-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ffafcc, #ff97b7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: white;
+}
+
+.game-info {
+    padding: 20px;
+}
+
+.game-info h3 {
+    color: #ff5c8d;
+    margin-bottom: 8px;
+    font-size: 1.4rem;
+}
+
+.game-info p {
+    color: #7a5a7a;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.game-rating {
+    color: #ffd166;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.game-status {
+    background: #ff5c8d;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .games-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .game-image {
+        height: 160px;
+    }
+}
+
+      .music-player {
+    background: linear-gradient(135deg, #5a3d5c, #7a5a7a);
+    color: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-top: 20px;
+}
+
+.current-song {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#currentSong {
+    color: #ff97b7;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.playlist {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.playlist li {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    margin-bottom: 5px;
+}
+
+.playlist li:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(10px);
+}
+
+.playlist li.playing {
+    background: rgba(255, 151, 183, 0.3);
+    border-left: 4px solid #ff97b7;
+}
+
+.song-title {
+    flex-grow: 1;
+}
+
+.play-icon {
+    color: #ff97b7;
+    font-weight: bold;
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.playlist li:hover .play-icon {
+    transform: scale(1.2);
+}
+
+        /* Social Media */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-item {
+            background: linear-gradient(135deg, #ff5c8d, #ff97b7);
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .social-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 92, 141, 0.4);
+        }
+
+        /* Blog */
+        .blog-posts {
+            margin-top: 20px;
+        }
+
+        .blog-post {
+            background: #fff5f7;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ff5c8d;
+        }
+
+        .post-date {
+            color: #ff5c8d;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .blog-post h3 {
+            color: #5a3d5c;
+            margin-bottom: 10px;
+        }
+
+        /* Scroll Animations */
+        .content-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .content-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #5a3d5c, #7a5a7a);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+        }
+
+        .visitor-counter {
+            font-family: 'Courier New', monospace;
+            font-size: 1.3rem;
+            color: #ff97b7;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        /* Info Bar */
+        .info-bar {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 20px;
+            border-bottom: 2px solid #ff5c8d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #5a3d5c;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 20px 15px;
+            }
+            
+            .nav-list {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-link {
+                width: 200px;
+                text-align: center;
+                margin: 5px 0;
+            }
+            
+            .username {
+                font-size: 2rem;
+            }
+            
+            .profile-pic {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .info-bar {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Info Bar -->
+    <div class="info-bar">
+        <div>MySpace - Profile - lilocatiee</div>
+        <div>2024/03/19 | 21:10 | 21°C Clear Sky</div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="profile-header">
+            <div class="profile-pic">
+                <img src="image/liokioo.jfif " style="width: 150px; height: 150px; border-radius: 50%;">
+            </div>
+            <h1 class="username">lilocatiee</h1>
+            <p class="status">Currently: Listening to music and coding</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <ul class="nav-list">
+            <li><a href="#about" class="nav-link">About Me</a></li>
+            <li><a href="#gallery" class="nav-link">Gallery</a></li>
+            <li><a href="#games" class="nav-link">Games</a></li>
+            <li><a href="#music" class="nav-link">Music</a></li>
+            <li><a href="#social" class="nav-link">Social Media</a></li>
+            <li><a href="#blog" class="nav-link">Blog</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Left Column -->
+        <div class="left-column">
+            <!-- About Me -->
+            <section id="about" class="content-section">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <p>Welcome to my colorful corner of the internet! I'm a creative soul who loves everything. 
+
+                        my name is lilo and i love beibg coding girl .</p>
+                    
+                    <div class="about-highlight">
+                        <strong>My Interests:</strong>
+                        <ul>
+                            <li>singing and writing songs</li>
+                            <li>Web Development and Coding</li>
+                            <li>y2k 2000s </li>
+                            <li>romcom movies</li>
+                            <li>Video Games and Design</li>
+                        </ul>
+                    </div>
+
+                    <p>hope u like my place bc i spend a lot of time here and i want you to engoy my place love you!</p>
+                </div>
+            </section>
+
+            <!-- Gallery -->
+            <section id="gallery" class="content-section">
+                <h2 class="section-title">My Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="image/𝓐’🎃 sur TikTok.jfif" style="width: 150px; height: 150px;">
+
+                    </div>
+                    <div class="gallery-item">
+                                               
+                        <img src="image/Visit TikTok to discover profiles!.jfif" style="width: 150px; height: 150px;">
+
+                    </div>
+                    <div class="gallery-item">
+                      <img src="image/Misaa.jfif" style="width: 150px; height: 150px;">
+
+                    </div>
+                    <div class="gallery-item">
+                        <img src="image/girlblogger girlblog girlblogging.jfif" style="width: 150px; height: 150px;">
+
+                    </div>
+                    <div class="gallery-item">
+                              <img src="image/download.jfif" style="width: 150px; height: 150px;">
+
+                    </div>
+                    <div class="gallery-item">
+                               <img src="image/⋆˚౨ৎ ⋆_˚.jfif" style="width: 150px; height: 150px;">
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Blog -->
+            <section id="blog" class="content-section">
+                <h2 class="section-title">My Blog</h2>
+                <div class="blog-posts">
+                    <div class="blog-post">
+                        <div class="post-date">october 20, 2025</div>
+                        <h3> i played silent hill classic for the first time!</h3>
+                        <p> it was my dream to play silenthill 2 and finly today i am playing it like imm obsessd i hope i can play the remake</p>
+                    </div>
+                    <div class="blog-post">
+                        <div class="post-date">May 10, 2025</div>
+                        <h3> i hate my town </h3>
+                        <p>it is so bad to be in this town like i really hate it everyone is bad and toxic i hope i can get out of here and live better in another place</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Right Column -->
+        <div class="right-column">
+           <!-- Games Section -->
+<section id="games" class="content-section">
+    <h2 class="section-title">My Games This Week</h2>
+    <div class="games-grid">
+        <!-- Game 1 -->
+        <div class="game-card">
+            <div class="game-image">
+                <img src="image/Real gameplay ss.jfif" alt="Stardew Valley" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="game-placeholder">🌿</div>
+            </div>
+            <div class="game-info">
+                <h3>resident evil village</h3>
+                <p>horror • 25+ hours</p>
+                <div class="game-rating">★★★★★</div>
+                <span class="game-status">Currently Playing</span>
+            </div>
+        </div>
+
+        <!-- Game 2 -->
+        <div class="game-card">
+            <div class="game-image">
+                <img src="image/Red Dead Redemption 2.jpeg" alt="Animal Crossing" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="game-placeholder">🏝</div>
+            </div>
+            <div class="game-info">
+                <h3>red Dead Redemption 2</h3>
+                <p>Life Simulation • 27+ hours</p>
+                <div class="game-rating">★★★★☆</div>
+                <span class="game-status">Daily Play</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+         <!-- Music Player Section -->
+<section id="music" class="content-section">
+    <h2 class="section-title">My Playlist</h2>
+    <div class="music-player">
+        <h3>Now Playing: Favorite Vibes</h3>
+        <div class="current-song">
+            <span id="currentSong">Select a song to play</span>
+        </div>
+        <ul class="playlist">
+            <li data-url="https://open.spotify.com/intl-ar/track/5ldCnY8E0fJ2RL9ftULcdR?si=9a972bd113f6470b">
+                <span class="song-title">ICON - HEIDI MONTAG</span>
+                <span class="play-icon">▶</span>
+            </li>
+            <li data-url="https://open.spotify.com/intl-ar/track/40gsPLTRUl4VDevJNoNeNE?si=41168597e91e493b">
+                <span class="song-title">I GOT IT BAD  - ADDISON RAE</span>
+                <span class="play-icon">▶</span>
+            </li>
+            <li data-url="https://open.spotify.com/intl-ar/track/7904wbV03rb4S0gGliqBk4?si=73b922a255c74491">
+                <span class="song-title"> HOMEWRECKED- ADELA</span>
+                <span class="play-icon">▶</span>
+            </li>
+            <li data-url="https://open.spotify.com/intl-ar/track/6mvKejhqa6qJXkSvHCSXxF?si=e2ca092975e841f0">
+                <span class="song-title">CHILOSA - PRIMA J </span>
+                <span class="play-icon">▶</span>
+            </li>
+            <li data-url="https://open.spotify.com/intl-ar/track/1Dmw6eyEuKScrkh2Y8l4fb?si=912a94daad484a63">
+                <span class="song-title"> EMPTY HOUSE - AIR</span>
+                <span class="play-icon">▶</span>
+            </li>
+        </ul>
+    </div>
+</section>
+
+   <!-- Social Media -->
+            <section id="social" class="content-section">
+                <h2 class="section-title">Find Me Online</h2>
+                <div class="social-grid">
+                    <a href="#" class="social-item">Instagram</a>
+                    <a href="#" class="social-item">TikTok</a>
+                    <a href="#" class="social-item">Pinterest</a>
+                    <a href="#https://youtube.com/@lilo-y1o?si=vCfJBdAT64Ys0sUl" class="social-item"> YouTube</a>
+                    <a href="#https://open.spotify.com/user/31ofbrp2symulgv6xgrsfotalxtm?si=ef38c9bcb8e3497f" class="social-item">spotify</a>
+                    <a href="#" class="social-item">Discord</a>
+                </div>
+            </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="visitor-counter">Visitors: 008,425</div>
+        <p>Made with passion and creativity!</p>
+        <p>© 2024 SweetDreams99 • All rights reserved</p>
+    </footer>
+
+    <script>
+        
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.content-section').forEach(section => {
+            observer.observe(section);
+        });
+
+     // Music player functionality
+document.querySelectorAll('.playlist li').forEach(song => {
+    song.addEventListener('click', function() {
+        const songTitle = this.querySelector('.song-title').textContent;
+        const songUrl = this.getAttribute('data-url');
+        
+        // Update current song display
+        document.getElementById('currentSong').textContent = songTitle;
+        
+        // Remove playing class from all songs
+        document.querySelectorAll('.playlist li').forEach(item => {
+            item.classList.remove('playing');
+        });
+        
+        // Add playing class to current song
+        this.classList.add('playing');
+        
+        // Open song in new tab (يمكنك تغيير هذا ليكون مشغل حقيقي)
+        window.open(songUrl, '_blank');
+        
+        // أو إذا تبيين تشغلين الأغنية في الصفحة نفسها:
+        // يمكنك إضافة audio player هنا
+    });
+});
+
+
+        // Visitor counter animation
+        let count = 8425;
+        setInterval(() => {
+            count++;
+            document.querySelector('.visitor-counter').textContent = 
+                'Visitors: ' + count.toString().padStart(6, '0');
+        }, 5000);
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+       // أصوات النقرات
+const clickSound = new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==');
+
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('nav-link') || 
+        e.target.classList.contains('social-item') ||
+        e.target.classList.contains('game-card')) {
+        clickSound.play().catch(() => {});
+    }
+}); 
+
+    </script>
+</body>
+</html>
